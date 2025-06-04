@@ -2,6 +2,14 @@
 
 Convert from standard ranklist to other ranklist.
 
+## Usage
+
+Make sure you have installed the `@algoux/standard-ranklist` package, then install this package:
+
+```shell
+npm i -S @algoux/standard-ranklist-convert-to
+```
+
 ## Converters
 
 - [x] `GeneralExcelConverter`: Convert to general excel file.
