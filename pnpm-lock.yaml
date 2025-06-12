@@ -9,16 +9,16 @@ overrides:
 
 dependencies:
   '@algoux/standard-ranklist-utils':
-    specifier: ^0.2.1
-    version: 0.2.1(@algoux/standard-ranklist@0.3.4)
+    specifier: ^0.2.5
+    version: 0.2.5(@algoux/standard-ranklist@0.3.8)
   xlsx:
     specifier: ^0.18.5
     version: 0.18.5
 
 devDependencies:
   '@algoux/standard-ranklist':
-    specifier: ^0.3.4
-    version: 0.3.4
+    specifier: ^0.3.8
+    version: 0.3.8
   '@types/node':
     specifier: ^16.18.38
     version: 16.18.38
@@ -57,12 +57,12 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@algoux/standard-ranklist-utils@0.2.1(@algoux/standard-ranklist@0.3.4):
-    resolution: {integrity: sha512-JjmyX81uJXY9dRlqGZm07LxlieazBrRl7gzf0KwfplavszkD8nITeQx9Z+XDc/cjvNUDH4EOMkgLUCN+03nirQ==}
+  /@algoux/standard-ranklist-utils@0.2.5(@algoux/standard-ranklist@0.3.8):
+    resolution: {integrity: sha512-khHh482skwC+mxsIB4LtF+QzLlUZRl4b7YfsmJtYWZ0FQYr1O2D4Vou7eUIA8AK81BV7IAh7RYLIeF4FnSlDtQ==}
     peerDependencies:
       '@algoux/standard-ranklist': '*'
     dependencies:
-      '@algoux/standard-ranklist': 0.3.4
+      '@algoux/standard-ranklist': 0.3.8
       '@types/semver': 7.5.0
       bcp-47-match: 2.0.3
       bignumber.js: 9.1.1
@@ -70,8 +70,8 @@ packages:
       textcolor: 1.0.2
     dev: false
 
-  /@algoux/standard-ranklist@0.3.4:
-    resolution: {integrity: sha512-zXQNcejFMaa6F1GsIPrEoFVGkBKKN2bPfawrX5M7Grgjag1YM9MZsxy9KxRYVhu4LDKd0PjvLr32C3hGLeiDUg==}
+  /@algoux/standard-ranklist@0.3.8:
+    resolution: {integrity: sha512-QPU3L1lE/pDodqBA8A6ofX7RuL0vVHHjvp3kLQ8LKHSBOoQvBFjs4S5eXItdMoKaqYh5ofIVz3+BDCCLAnF8+Q==}
 
   /@esbuild/aix-ppc64@0.23.1:
     resolution: {integrity: sha512-6VhYk1diRqrhBAqpJEdjASR/+WVRtfjpqKuNw11cLiaWpAT/Uu+nokB+UJnevzy/P9C/ty6AOe0dwueMrGh/iQ==}

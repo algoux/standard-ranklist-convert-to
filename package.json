@@ -26,14 +26,15 @@
   ],
   "scripts": {
     "dev": "tsx src/index.ts",
-    "build": "pkgroll"
+    "build": "pkgroll",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@algoux/standard-ranklist-utils": "^0.2.1",
+    "@algoux/standard-ranklist-utils": "^0.2.5",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@algoux/standard-ranklist": "^0.3.4",
+    "@algoux/standard-ranklist": "^0.3.8",
     "@types/node": "^16.18.38",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",

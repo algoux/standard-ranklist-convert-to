@@ -5,6 +5,7 @@ import {
   secToTimeStr,
   numberToAlphabet,
   convertToStaticRanklist,
+  resolveUserMarkers,
 } from '@algoux/standard-ranklist-utils';
 import * as XLSX from 'xlsx';
 import { SrkConverter, SrkExcelConverter } from '../types';
@@ -43,14 +44,16 @@ export class GeneralExcelConverter implements SrkConverter, SrkExcelConverter {
     unofficialWorksheet['!cols'] = mainWorksheet['!cols'];
     XLSX.utils.book_append_sheet(workbook, unofficialWorksheet, 'Unofficial');
     // sub worksheets: by marker
-    const markers: string[] = (ranklist.markers || [])
-      .map((m) => m.id)
-      .filter((m) => ranklist.rows.some((r) => r.user.marker === m));
+    const markers = (ranklist.markers || []).filter((m) =>
+      ranklist.rows.some((r) => resolveUserMarkers(r.user, ranklist.markers).find((um) => um.id === m.id)),
+    );
     for (const marker of markers) {
-      const markerLabel = resolveText(ranklist.markers?.find((m) => m.id === marker)?.label || '--');
+      const markerLabel = resolveText(marker.label || '--');
       const worksheet = XLSX.utils.aoa_to_sheet([
         aoaHeader,
-        ...aoaBody.filter((_, index) => ranklist.rows[index].user.marker === marker),
+        ...aoaBody.filter((_, index) =>
+          resolveUserMarkers(ranklist.rows[index].user, ranklist.markers).find((um) => um.id === marker.id),
+        ),
       ]);
       worksheet['!cols'] = mainWorksheet['!cols'];
       XLSX.utils.book_append_sheet(workbook, worksheet, markerLabel);
@@ -67,7 +70,7 @@ export class GeneralExcelConverter implements SrkConverter, SrkExcelConverter {
     const aoa: string[][] = [];
     aoa.push([
       ...ranklist.series.map((s) => s.title!),
-      'Marker',
+      'Markers',
       'Official',
       'Organization',
       'Name',
@@ -93,9 +96,8 @@ export class GeneralExcelConverter implements SrkConverter, SrkExcelConverter {
           arr.push(`${v.rank}`);
         }
       });
-      arr.push(
-        user.marker ? resolveText((ranklist.markers || []).find((m) => m.id === user.marker)?.label || '--') : '',
-      );
+      const userMarkers = resolveUserMarkers(user, ranklist.markers);
+      arr.push(userMarkers.length ? userMarkers.map((um) => resolveText(um.label)).join(', ') : '');
       arr.push(user.official === false ? '*' : '');
       arr.push(resolveText(user.organization));
       arr.push(resolveText(user.name));
