@@ -1,6 +1,6 @@
 {
   "name": "@algoux/standard-ranklist-convert-to",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Convert standard ranklist to other ranklist formats.",
   "author": "bLue",
   "keywords": [
@@ -58,6 +58,7 @@
     "url": "https://github.com/algoux/standard-ranklist-convert-to/issues"
   },
   "homepage": "https://github.com/algoux/standard-ranklist-convert-to#readme",
+  "srkSupportedVersions": ">=0.3.0 <0.4.0",
   "pnpm": {
     "overrides": {
       "esbuild": "0.23.1"
