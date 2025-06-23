@@ -17,12 +17,13 @@ export class GeneralExcelConverter implements SrkConverter, SrkExcelConverter {
     const mainWorksheet = XLSX.utils.aoa_to_sheet(aoa);
     mainWorksheet['!cols'] = [
       ...ranklist.series.map((s) => ({ wch: 10 })),
-      { wch: 10 },
-      { wch: 10 },
-      { wch: 25 },
-      { wch: 40 },
-      { wch: 10 },
-      { wch: 10 },
+      { wch: 10 }, // Markers
+      { wch: 10 }, // Official
+      { wch: 25 }, // Organization
+      { wch: 40 }, // Name
+      { wch: 25 }, // Team Members
+      { wch: 10 }, // Score
+      { wch: 10 }, // Time
       ...ranklist.problems.map((p) => ({ wch: 15 })),
     ];
     XLSX.utils.book_append_sheet(workbook, mainWorksheet, 'Main');
@@ -74,6 +75,7 @@ export class GeneralExcelConverter implements SrkConverter, SrkExcelConverter {
       'Official',
       'Organization',
       'Name',
+      'Team Members',
       'Score',
       'Time',
       ...ranklist.problems.map((p, index) => {
@@ -97,10 +99,11 @@ export class GeneralExcelConverter implements SrkConverter, SrkExcelConverter {
         }
       });
       const userMarkers = resolveUserMarkers(user, ranklist.markers);
-      arr.push(userMarkers.length ? userMarkers.map((um) => resolveText(um.label)).join(', ') : '');
+      arr.push(userMarkers.map((um) => resolveText(um.label)).join(', '));
       arr.push(user.official === false ? '*' : '');
       arr.push(resolveText(user.organization));
       arr.push(resolveText(user.name));
+      arr.push(resolveText((user.teamMembers || []).map((tm) => resolveText(tm.name)).join(', ')));
       arr.push(`${score.value || 0}`);
       arr.push(secToTimeStr(formatTimeDuration(score.time || [0, 's'], 's', (v) => Math.floor(v))));
       for (const status of statuses) {

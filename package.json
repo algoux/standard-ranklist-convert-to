@@ -30,11 +30,11 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@algoux/standard-ranklist-utils": "^0.2.5",
+    "@algoux/standard-ranklist-utils": "^0.2.6",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@algoux/standard-ranklist": "^0.3.8",
+    "@algoux/standard-ranklist": "^0.3.9",
     "@types/node": "^16.18.38",
     "@typescript-eslint/eslint-plugin": "^5.61.0",
     "@typescript-eslint/parser": "^5.61.0",
